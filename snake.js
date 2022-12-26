@@ -205,3 +205,23 @@ $('body').keydown(function (e) {
         snake.setDirection(newDirection)
     }
 })
+
+
+// handle restart-button
+const button = document.getElementById('restart')
+button.addEventListener('click', restartHandle)
+
+function restartHandle() {
+    clearInterval(intervalId)
+    score = 0
+    snake = new Snake()
+    apple = new Apple()
+    intervalId = setInterval(() => {
+        ctx.clearRect(0, 0, width, height)
+        drawScore()
+        snake.move()
+        snake.draw()
+        apple.draw()
+        drawBorder()
+    }, 100)
+}
